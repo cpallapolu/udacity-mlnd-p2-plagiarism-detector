@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 __MACOSX/
-data.zip
+data.zip*
