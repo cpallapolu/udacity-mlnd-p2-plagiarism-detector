@@ -43,12 +43,11 @@ class BinaryClassifier(nn.Module):
         :param x: A batch of input features of size (batch_size, input_features)
         :return: A single, sigmoid-activated value as output
         """
-        
+
         # define the feedforward behavior
-        out = F.ReLU(self.fc1(x))
+        out = F.relu(self.fc1(x))
         out = self.drop(out)
         out = self.fc2(out)
-        sig = self.sig(out)
         
-        return sig
+        return self.sig(out)
     

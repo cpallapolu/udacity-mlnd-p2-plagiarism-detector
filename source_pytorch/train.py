@@ -117,12 +117,14 @@ if __name__ == '__main__':
     ## TODO: Add args for the three model parameters: input_features, hidden_dim, output_dim
     # Model Parameters
     
-    parser.add_argument('--input_features', type=int, default=2 metavar='IF',
+    parser.add_argument('--input_features', type=int, default=2, metavar='IF',
                         help='number of input features to model (default: 2)')
     parser.add_argument('--hidden_dim', type=int, default=10, metavar='IN',
                         help='number of hidden dimensions of model (default: 10)')
     parser.add_argument('--output_dim', type=int, default=1, metavar='OUT',
                         help='number of output dimensions of model (default: 1)')
+    parser.add_argument('--learning_rate', type=float, default=0.003, metavar='lr',
+                        help='Learning Rate of the model (default: 0.003)')
     # args holds all passed-in arguments
     args = parser.parse_args()
 
@@ -143,7 +145,7 @@ if __name__ == '__main__':
     model = BinaryClassifier(args.input_features, args.hidden_dim, args.output_dim).to(device)
 
     ## TODO: Define an optimizer and loss function for training
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
     criterion = torch.nn.BCELoss()
 
     # Trains the model (given line of code, which calls the above training function)
